@@ -1,4 +1,4 @@
-package com.carteira;
+package com.carteira.repositorio;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -44,7 +44,7 @@ public class UsuarioTest {
 	public void salvar() {
 		Usuario u = new Usuario();
 		u.setNome("teste");
-		u.setEmail("teste@teste.com");
+		u.setEmail(EMAIL);
 		u.setSenha("123456");
 		
 		Usuario usuario = usuarioRep.save(u);
