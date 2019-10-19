@@ -12,7 +12,7 @@ public class UsuarioDTO {
 	@Length(min=3, max=50, message="O nome deve conter entre 3 e 50 caracteres")
 	private String nome;
 	
-	@Email(message="Email inválido!")
+	@Email(message="Email inválido")
 	private String email;
 	
 	@Length(min=6, message="A senha deve conter no minimo 6 caractres")

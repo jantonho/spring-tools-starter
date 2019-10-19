@@ -1,4 +1,4 @@
-package com.carteira.repositorio;
+package com.carteira.repository;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -14,16 +14,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.carteira.entidade.Usuario;
-import com.carteira.repositorio.UsuarioRepositorio;
+import com.carteira.entity.Usuario;
+import com.carteira.repository.UsuarioRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UsuarioTest {
+public class UsuarioRepositoryTest {
 
 	private static final String EMAIL = "teste@teste.com";
 	@Autowired
-	UsuarioRepositorio usuarioRep;
+	UsuarioRepository usuarioRep;
 	
 	@Before
 	public void antes() {

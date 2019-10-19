@@ -1,4 +1,4 @@
-package com.carteira.servico;
+package com.carteira.service;
 
 import static org.junit.Assert.assertTrue;
 
@@ -15,8 +15,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.carteira.entidade.Usuario;
-import com.carteira.repositorio.UsuarioRepositorio;
+import com.carteira.entity.Usuario;
+import com.carteira.repository.UsuarioRepository;
+import com.carteira.service.UsuarioService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -24,10 +25,10 @@ import com.carteira.repositorio.UsuarioRepositorio;
 public class UsuarioServiceTest {
 
 	@MockBean
-	UsuarioRepositorio usuarioRep;
+	UsuarioRepository usuarioRep;
 	
 	@Autowired
-	UsuarioServico usuarioService;
+	UsuarioService usuarioService;
 	
 	@Before
 	public void antes() {

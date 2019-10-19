@@ -1,4 +1,4 @@
-package com.carteira.servico;
+package com.carteira.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,14 +10,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.carteira.entidade.Usuario;
-import com.carteira.repositorio.UsuarioRepositorio;
+import com.carteira.entity.Usuario;
+import com.carteira.repository.UsuarioRepository;
 
 @Service
-public class UsuarioServicoImpl implements UsuarioServico {
+public class UsuarioServiceImpl implements UsuarioService {
 
 	@Autowired
-	UsuarioRepositorio usuarioRep;
+	UsuarioRepository usuarioRep;
 
 	@Override
 	public Usuario save(Usuario u) {

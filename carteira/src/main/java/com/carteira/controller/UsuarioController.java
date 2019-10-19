@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.carteira.dto.UsuarioDTO;
-import com.carteira.entidade.Usuario;
+import com.carteira.entity.Usuario;
 import com.carteira.response.Response;
-import com.carteira.servico.UsuarioServico;
+import com.carteira.service.UsuarioService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
@@ -22,7 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class UsuarioController {
 
 	@Autowired
-	private UsuarioServico usuarioService;
+	private UsuarioService usuarioService;
 
 	private ObjectMapper mapper = new ObjectMapper();
 
@@ -31,6 +31,11 @@ public class UsuarioController {
 		Response<UsuarioDTO> response = new Response<UsuarioDTO>();
 		
 		Usuario usuario = usuarioService.save(mapper.convertValue(dto, Usuario.class));
+		
+		if(result.hasErrors()) {
+			result.getAllErrors().forEach(e -> response.getErrors().add(e.getDefaultMessage()));
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+		}
 		
 		response.setData(mapper.convertValue(usuario, UsuarioDTO.class));
 		return ResponseEntity.status(HttpStatus.CREATED).body(response);

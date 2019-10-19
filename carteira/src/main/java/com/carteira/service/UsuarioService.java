@@ -1,10 +1,10 @@
-package com.carteira.servico;
+package com.carteira.service;
 
 import java.util.Optional;
 
-import com.carteira.entidade.Usuario;
+import com.carteira.entity.Usuario;
 
-public interface UsuarioServico {
+public interface UsuarioService {
 
 	Usuario save(Usuario u);
 	

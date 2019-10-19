@@ -1,4 +1,4 @@
-package com.carteira.entidade;
+package com.carteira.entity;
 
 import java.io.Serializable;
 

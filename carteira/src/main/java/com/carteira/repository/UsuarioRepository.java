@@ -1,12 +1,12 @@
-package com.carteira.repositorio;
+package com.carteira.repository;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.carteira.entidade.Usuario;
+import com.carteira.entity.Usuario;
 
-public interface UsuarioRepositorio extends JpaRepository<Usuario, Long> {
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
 	Optional<Usuario> findByEmail(String email);
 }
