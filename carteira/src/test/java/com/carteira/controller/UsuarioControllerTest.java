@@ -46,7 +46,8 @@ public class UsuarioControllerTest {
 		mvc.perform(MockMvcRequestBuilders.post("/usuario").content(getMockUsuarioJson(ID, NOME, EMAIL, SENHA))
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
-		.andExpect(status().isCreated());
+		.andExpect(status().isCreated())
+		.andExpect(jsonPath("$.data.senha").doesNotExist());
 	}
 	
 	@Test

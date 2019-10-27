@@ -15,6 +15,7 @@ import com.carteira.dto.UsuarioDTO;
 import com.carteira.entity.Usuario;
 import com.carteira.response.Response;
 import com.carteira.service.UsuarioService;
+import com.carteira.util.Bcrypt;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
@@ -30,12 +31,18 @@ public class UsuarioController {
 	public ResponseEntity<Response<UsuarioDTO>> create(@Valid @RequestBody UsuarioDTO dto, BindingResult result) {
 		Response<UsuarioDTO> response = new Response<UsuarioDTO>();
 		
-		Usuario usuario = usuarioService.save(mapper.convertValue(dto, Usuario.class));
-		
 		if(result.hasErrors()) {
 			result.getAllErrors().forEach(e -> response.getErrors().add(e.getDefaultMessage()));
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
 		}
+
+		// criptografando senha
+		dto.setSenha(Bcrypt.getHash(dto.getSenha()));
+		
+		Usuario usuario = usuarioService.save(mapper.convertValue(dto, Usuario.class));
+		
+		// omitindo senha do retorno
+		usuario.setSenha(null);
 		
 		response.setData(mapper.convertValue(usuario, UsuarioDTO.class));
 		return ResponseEntity.status(HttpStatus.CREATED).body(response);
