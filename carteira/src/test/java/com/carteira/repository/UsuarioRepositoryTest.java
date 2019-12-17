@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.carteira.entity.Usuario;
@@ -19,18 +20,19 @@ import com.carteira.repository.UsuarioRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@ActiveProfiles("test")
 public class UsuarioRepositoryTest {
 
-	private static final String EMAIL = "teste@teste.com";
+	private static final String EMAIL = "test@test.com";
 	@Autowired
 	UsuarioRepository usuarioRep;
 	
 	@Before
 	public void antes() {
 		Usuario u = new Usuario();
-		u.setNome("teste");
+		u.setNome("test");
 		u.setEmail(EMAIL);
-		u.setSenha("123456");
+		u.setSenha("12345678");
 		
 		usuarioRep.save(u);
 	}
@@ -43,9 +45,9 @@ public class UsuarioRepositoryTest {
 	@Test
 	public void salvar() {
 		Usuario u = new Usuario();
-		u.setNome("teste");
+		u.setNome("test");
 		u.setEmail(EMAIL);
-		u.setSenha("123456");
+		u.setSenha("12345678");
 		
 		Usuario usuario = usuarioRep.save(u);
 		
@@ -54,7 +56,7 @@ public class UsuarioRepositoryTest {
 	
 	@Test
 	public void buscarPorEmail() {
-		Optional<Usuario> usuario = usuarioRep.findByEmail("teste@teste.com");
+		Optional<Usuario> usuario = usuarioRep.findByEmail(EMAIL);
 		
 		assertTrue(usuario.isPresent());
 		assertEquals(usuario.get().getEmail(), EMAIL);
