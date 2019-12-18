@@ -8,6 +8,8 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 @Data
@@ -19,6 +21,7 @@ public class ItemCarteiraDTO {
 	private Long idCarteira;
 
 	@NotNull(message = "Informe a data")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy", locale = "pt-BR", timezone = "Brazil/East")
 	private Date data;
 	
 	@NotNull(message = "Informe o tipo")
