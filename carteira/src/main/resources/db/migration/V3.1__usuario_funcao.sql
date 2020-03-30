@@ -1,0 +1,1 @@
+ALTER TABLE dbo.usuario ADD funcao VARCHAR(40);
