@@ -8,11 +8,14 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -35,6 +38,8 @@ import com.carteira.service.ItemCarteiraService;
 @RestController
 @RequestMapping("item-carteira")
 public class ItemCarteiraController {
+	
+	private Logger log = LoggerFactory.getLogger(ItemCarteiraController.class);
 
 	@Autowired
 	private ItemCarteiraService itemCarteiraService;
@@ -90,6 +95,9 @@ public class ItemCarteiraController {
 	@GetMapping("/tipo/{carteira}")
 	public ResponseEntity<Response<List<ItemCarteiraDTO>>> buscarPorCarteiraETipo(@PathVariable("carteira")  Long carteira
 			, @RequestParam("tipo") String tipo) {
+		
+		log.info("Buscando por carteira {} e tipo {}", carteira, tipo);
+		
 		Response<List<ItemCarteiraDTO>> response = new Response<List<ItemCarteiraDTO>>();
 		List<ItemCarteira> list = itemCarteiraService.buscarPorCarteiraETipo(carteira, TipoItemCarteira.getEnum(tipo));
 		
@@ -133,6 +141,7 @@ public class ItemCarteiraController {
 	}
 	
 	@DeleteMapping(value="/{idItemCarteira}")
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	public ResponseEntity<Response<String>> remover(@PathVariable("idItemCarteira") Long idItemCarteira){
 		Response<String> response = new Response<String>();
 		

@@ -15,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.carteira.entity.TipoFuncao;
 import com.carteira.entity.Usuario;
 import com.carteira.repository.UsuarioRepository;
 
@@ -33,6 +34,7 @@ public class UsuarioRepositoryTest {
 		u.setNome("test");
 		u.setEmail(EMAIL);
 		u.setSenha("12345678");
+		u.setFuncao(TipoFuncao.ROLE_USER);
 		
 		usuarioRep.save(u);
 	}
@@ -48,6 +50,7 @@ public class UsuarioRepositoryTest {
 		u.setNome("test");
 		u.setEmail(EMAIL);
 		u.setSenha("12345678");
+		u.setFuncao(TipoFuncao.ROLE_USER);
 		
 		Usuario usuario = usuarioRep.save(u);
 		

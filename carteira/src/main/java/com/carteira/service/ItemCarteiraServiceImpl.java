@@ -7,6 +7,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,7 @@ public class ItemCarteiraServiceImpl implements ItemCarteiraService {
 	private int itensPorPagina;
 
 	@Override
+	@CacheEvict(value = "buscarPorCarteiraETipo", allEntries = true)
 	public ItemCarteira salvar(ItemCarteira itemCarteira) {
 		return repository.save(itemCarteira);
 	}
@@ -40,6 +43,7 @@ public class ItemCarteiraServiceImpl implements ItemCarteiraService {
 	}
 
 	@Override
+	@Cacheable(value = "buscarPorCarteiraETipo")
 	public List<ItemCarteira> buscarPorCarteiraETipo(Long idCarteira, TipoItemCarteira tipo) {
 		return repository.findByCarteiraIdAndTipo(idCarteira, tipo);
 	}
@@ -55,6 +59,7 @@ public class ItemCarteiraServiceImpl implements ItemCarteiraService {
 	}
 
 	@Override
+	@CacheEvict(value = "buscarPorCarteiraETipo", allEntries = true)
 	public void removerPorId(Long id) {
 		repository.deleteById(id);
 	}

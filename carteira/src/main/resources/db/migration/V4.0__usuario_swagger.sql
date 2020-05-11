@@ -1,0 +1,1 @@
+insert into usuario(email, nome, senha) values('development@swagger.user', 'swagger user', 'swagger')
