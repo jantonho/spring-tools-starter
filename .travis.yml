@@ -4,8 +4,9 @@ jdk:
 - oraclejdk8
 before_install:
 - export TZ=Brazil/East
+- chmod +x gradlew
 deploy:
   provider: heroku
   api_key:
-    secure: $SECURE_KEY
+    secure: 665dc4fc-c292-4396-828a-e926c274ddbc
   app: $APP
