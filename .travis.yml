@@ -10,4 +10,3 @@ deploy:
   api_key:
     secure: 665dc4fc-c292-4396-828a-e926c274ddbc
   app: $APP
-  
