@@ -8,5 +8,5 @@ before_install:
 deploy:
   provider: heroku
   api_key:
-    secure: 665dc4fc-c292-4396-828a-e926c274ddbc
+    secure: $SECURE_KEY
   app: $APP
