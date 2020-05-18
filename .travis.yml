@@ -8,5 +8,5 @@ before_install:
 deploy:
   provider: heroku
   api_key:
-    secure: 60a2556c-baab-4b05-8184-8f7e9ac90991
-  app: api-carteira
+    secure: $SECURE_KEY
+  app: $APP
